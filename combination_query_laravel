@@ -1,0 +1,5 @@
+$stock = DB::table('stock')
+                     ->select(DB::raw('sum(stock_quantity) as qty,products.product_name'))
+                     ->leftJoin('products', 'stock.stock_product_id', '=', 'products.id')
+                     ->groupBy('stock.stock_product_id', 'products.product_name')
+                     ->get();
